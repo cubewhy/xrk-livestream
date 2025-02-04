@@ -17,6 +17,7 @@ function LiveStreamPage() {
 
     useEffect(() => {
         if (playerRef.current) {
+            console.log("Stream: " + streamAddress);
             new DPlayer({
                 container: playerRef.current,
                 live: true,
@@ -32,7 +33,7 @@ function LiveStreamPage() {
         if (!username) {
             setUsername(`用户${Math.floor(Math.random() * 1000)}`)
         }
-    });
+    }, [streamAddress]);
 
     useEffect(() => {
         const websocket = new WebSocket(chatServer);
@@ -65,7 +66,8 @@ function LiveStreamPage() {
             <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
                 直播学习平台
             </h1>
-            <div ref={playerRef} className="absolute w-full max-w-4xl my-6 rounded-lg m-4 overflow-hidden shadow-lg"></div>
+            <div ref={playerRef}
+                 className="w-full max-w-4xl my-6 rounded-lg m-4 overflow-hidden shadow-lg"></div>
 
             <ChatRoom messages={messages} sendMessage={sendMessage}/>
             <OnlineStatus connectionStatus={connectionStatus} onlineCount={onlineCount}/>
