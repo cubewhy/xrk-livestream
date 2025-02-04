@@ -41,6 +41,7 @@ function LiveStreamPage() {
     }, [streamAddress]);
 
     useEffect(() => {
+        console.log(`Connect to chat server ${chatServer}`);
         const websocket = new WebSocket(chatServer);
         websocket.onopen = () => setConnectionStatus("connected");
         websocket.onclose = () => setConnectionStatus("disconnected");
