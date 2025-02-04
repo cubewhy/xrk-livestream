@@ -18,16 +18,21 @@ function LiveStreamPage() {
     useEffect(() => {
         if (playerRef.current) {
             console.log("Stream: " + streamAddress);
-            new DPlayer({
-                container: playerRef.current,
-                live: true,
-                video: {
-                    type: "flv",
-                    url: streamAddress,
-                },
-                theme: "#7c3aed",
-                // danmaku: false,
-            });
+            try {
+                new DPlayer({
+                    container: playerRef.current,
+                    live: true,
+                    video: {
+                        type: "flv",
+                        url: streamAddress,
+                    },
+                    theme: "#7c3aed",
+                    // danmaku: false,
+                });
+            } catch (e) {
+                console.error('Failed to load DPlayer');
+                console.error(e);
+            }
         }
 
         if (!username) {
