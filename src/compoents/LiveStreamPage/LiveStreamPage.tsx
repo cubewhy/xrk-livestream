@@ -52,7 +52,7 @@ function LiveStreamPage() {
         };
         setWs(websocket);
         return () => websocket.close();
-    }, []);
+    }, [chatServer]);
 
     const sendMessage = (message: string) => {
         if (ws && message.trim()) {

@@ -7,8 +7,8 @@ import {useEffect} from "react";
 import {LiveConfig} from "./entities.ts";
 
 function App() {
-    const [setChatServer] = useLocalStorage('live.chat.server');
-    const [setStreamAddress] = useLocalStorage('live.stream');
+    const [,setChatServer] = useLocalStorage('live.chat.server');
+    const [,setStreamAddress] = useLocalStorage('live.stream');
 
     useEffect(() => {
         const queryParams = new URLSearchParams(window.location.search);
