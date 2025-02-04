@@ -16,6 +16,9 @@ function LiveStreamPage() {
     const [streamAddress] = useLocalStorage('live.stream');
 
     useEffect(() => {
+        if (!streamAddress) {
+            return;
+        }
         if (playerRef.current) {
             console.log("Stream: " + streamAddress);
             try {
@@ -41,6 +44,9 @@ function LiveStreamPage() {
     }, [streamAddress]);
 
     useEffect(() => {
+        if (!chatServer) {
+            return;
+        }
         console.log(`Connect to chat server ${chatServer}`);
         const websocket = new WebSocket(chatServer);
         websocket.onopen = () => setConnectionStatus("connected");
